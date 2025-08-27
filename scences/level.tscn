@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c0eqjxwwmlp43"]
+[gd_scene load_steps=20 format=3 uid="uid://c0eqjxwwmlp43"]
 
 [ext_resource type="Texture2D" uid="uid://dpe1lpsg4jk6c" path="res://Assets/textures/Wood_07-256x256.png" id="1_dckfn"]
 [ext_resource type="PackedScene" uid="uid://c0qlydxfjy6mh" path="res://Assets/Models/kitchenFridge.fbx" id="2_qi052"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://cbjetltm4rrbn" path="res://Assets/Models/doorway.fbx" id="4_7l045"]
 [ext_resource type="PackedScene" uid="uid://cd20wfkh4o0va" path="res://Assets/Models/loungeDesignSofaCorner.fbx" id="5_cq5gf"]
 [ext_resource type="PackedScene" uid="uid://b6w1naoc7g5al" path="res://Assets/Models/pottedPlant.fbx" id="6_3irxl"]
+[ext_resource type="PackedScene" uid="uid://bdtn1xjb5eyow" path="res://Assets/Models/MI SMART TV.fbx" id="7_2mwew"]
+[ext_resource type="PackedScene" uid="uid://kmkfmtsl0bit" path="res://Assets/Models/cabinetTelevision.fbx" id="8_2mn0i"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qi052"]
 albedo_texture = ExtResource("1_dckfn")
@@ -41,11 +43,18 @@ size = Vector3(4.16467, 2.8208, 10.7764)
 [sub_resource type="SphereShape3D" id="SphereShape3D_2mwew"]
 radius = 2.04561
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_2mn0i"]
+size = Vector3(2.01947, 1.10503, 0.162109)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l7o77"]
+size = Vector3(10.2065, 1, 2.16261)
+
 [node name="room" type="Node3D"]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(10, 0, 0, 0, 0.2, 0, 0, 0, 10, 0, 0, 0)
+transform = Transform3D(10, 0, 0, 0, 0.2, 0, 0, 0, 10, -1.44989, 0, 0)
 use_collision = true
+size = Vector3(0.710022, 1, 1)
 material = SubResource("StandardMaterial3D_qi052")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
@@ -53,17 +62,19 @@ transform = Transform3D(10, 0, 0, 0, 0.2, 0, 0, 0, 10, 0, 25.8833, 0)
 use_collision = true
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="."]
-transform = Transform3D(-0.00261045, 0, -9.89441, 0, 3, 0, 0.267076, 0, -0.09671, 0, 1.56539, -5)
+transform = Transform3D(-0.00261045, 0, -9.89441, 0, 3, 0, 0.267076, 0, -0.09671, -1.41073, 1.56539, -5.01379)
 use_collision = true
+size = Vector3(1, 1, 0.714844)
 material = SubResource("StandardMaterial3D_tas22")
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="."]
-transform = Transform3D(-0.00261045, 0, -9.89441, 0, 3, 0, 0.267076, 0, -0.09671, 0, 1.5, 4.99174)
+transform = Transform3D(-0.00261045, 0, -9.89441, 0, 3, 0, 0.267076, 0, -0.09671, -1.58344, 1.5, 4.97626)
 use_collision = true
+size = Vector3(1, 1, 0.679932)
 material = SubResource("StandardMaterial3D_7l045")
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="."]
-transform = Transform3D(0.267035, 0, -0.198072, 0, 3, 0, 0.00534646, 0, 9.89291, 4.94449, 1.57329, 0.0300307)
+transform = Transform3D(0.267035, 0, -0.198072, 0, 3, 0, 0.00534646, 0, 9.89291, 1.97755, 1.57329, 0.0300307)
 use_collision = true
 material = SubResource("StandardMaterial3D_cq5gf")
 
@@ -86,13 +97,13 @@ transform = Transform3D(4.04556, 0, 0, 0, 12.4934, 0, 0, 0, 2.79604, -2.18218, 2
 shape = SubResource("BoxShape3D_tas22")
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("3_tas22")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.959587, 0.640077, 1.27923)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.747963, 0.640077, 1.27923)
 
 [node name="doorway" parent="." instance=ExtResource("4_7l045")]
-transform = Transform3D(-0.00159819, 0, -0.114051, 0, 0.16763, 0, -0.192366, 0, 0.000947541, 4.74043, 0.112151, 1.11051)
+transform = Transform3D(-0.00160451, 0, -0.168367, 0, 0.161031, 0, -0.193127, 0, 0.0013988, 1.7984, -0.021739, 1.92272)
 
 [node name="loungeDesignSofaCorner" parent="." instance=ExtResource("5_cq5gf")]
-transform = Transform3D(0.00373724, 0, -0.266107, 0, 0.21436, 0, 0.156955, 0, 0.00633623, -1.1864, 0.1, -2.59726)
+transform = Transform3D(0.00373724, 0, -0.266107, 0, 0.21436, 0, 0.156955, 0, 0.00633623, -1.1864, 0.1, -2.6376)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="loungeDesignSofaCorner"]
 transform = Transform3D(1, 0, 3.72529e-09, 0, 1, 0, 0, 0, 1, 0, 2.314, 0)
@@ -113,3 +124,21 @@ transform = Transform3D(0.221399, 0, 0, 0, 0.134401, 0, 0, 0, 0.176012, -4.20017
 [node name="CollisionShape3D" type="CollisionShape3D" parent="pottedPlant/StaticBody3D"]
 transform = Transform3D(0.425815, 0, 0, 0, 1.8136, 0, 0, 0, 0.55783, 0, 2.55034, 0.0081377)
 shape = SubResource("SphereShape3D_2mwew")
+
+[node name="MI SMART TV" parent="." instance=ExtResource("7_2mwew")]
+transform = Transform3D(-0.707831, 0, 0.00848568, 0, 0.653063, 0, -0.00607824, 0, -0.988185, -2.26916, 0.708532, -2.44581)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MI SMART TV"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MI SMART TV/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0037291, 0.701169, -0.340174)
+shape = SubResource("BoxShape3D_2mn0i")
+
+[node name="cabinetTelevision" parent="." instance=ExtResource("8_2mn0i")]
+transform = Transform3D(0.211298, 0, 0, 0, 0.198727, 0, 0, 0, 0.154002, -1.52881, 0.1, -2.34194)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="cabinetTelevision"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="cabinetTelevision/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1.7088, 0, 0, 0, 1.27304, -1.95785, 5.01359, 7.15709)
+shape = SubResource("BoxShape3D_l7o77")
