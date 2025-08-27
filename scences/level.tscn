@@ -1,0 +1,115 @@
+[gd_scene load_steps=16 format=3 uid="uid://c0eqjxwwmlp43"]
+
+[ext_resource type="Texture2D" uid="uid://dpe1lpsg4jk6c" path="res://Assets/textures/Wood_07-256x256.png" id="1_dckfn"]
+[ext_resource type="PackedScene" uid="uid://c0qlydxfjy6mh" path="res://Assets/Models/kitchenFridge.fbx" id="2_qi052"]
+[ext_resource type="PackedScene" uid="uid://cjojcfqo0nkml" path="res://scences/player.tscn" id="3_tas22"]
+[ext_resource type="PackedScene" uid="uid://cbjetltm4rrbn" path="res://Assets/Models/doorway.fbx" id="4_7l045"]
+[ext_resource type="PackedScene" uid="uid://cd20wfkh4o0va" path="res://Assets/Models/loungeDesignSofaCorner.fbx" id="5_cq5gf"]
+[ext_resource type="PackedScene" uid="uid://b6w1naoc7g5al" path="res://Assets/Models/pottedPlant.fbx" id="6_3irxl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qi052"]
+albedo_texture = ExtResource("1_dckfn")
+uv1_scale = Vector3(10, 10, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tas22"]
+albedo_color = Color(0, 0.514607, 0.514607, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7l045"]
+albedo_color = Color(0, 0.513726, 0.513726, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cq5gf"]
+albedo_color = Color(0, 0.513726, 0.513726, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3irxl"]
+albedo_color = Color(0, 0.513726, 0.513726, 1)
+
+[sub_resource type="Environment" id="Environment_dckfn"]
+background_mode = 2
+ambient_light_color = Color(0.351563, 0.351563, 0.351563, 1)
+ambient_light_energy = 0.08
+glow_intensity = 0.0
+fog_enabled = true
+fog_light_color = Color(0.133333, 0.133333, 0.133333, 1)
+fog_density = 0.015
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tas22"]
+size = Vector3(0.86731, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3irxl"]
+size = Vector3(4.16467, 2.8208, 10.7764)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2mwew"]
+radius = 2.04561
+
+[node name="room" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 0.2, 0, 0, 0, 10, 0, 0, 0)
+use_collision = true
+material = SubResource("StandardMaterial3D_qi052")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 0.2, 0, 0, 0, 10, 0, 25.8833, 0)
+use_collision = true
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(-0.00261045, 0, -9.89441, 0, 3, 0, 0.267076, 0, -0.09671, 0, 1.56539, -5)
+use_collision = true
+material = SubResource("StandardMaterial3D_tas22")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(-0.00261045, 0, -9.89441, 0, 3, 0, 0.267076, 0, -0.09671, 0, 1.5, 4.99174)
+use_collision = true
+material = SubResource("StandardMaterial3D_7l045")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(0.267035, 0, -0.198072, 0, 3, 0, 0.00534646, 0, 9.89291, 4.94449, 1.57329, 0.0300307)
+use_collision = true
+material = SubResource("StandardMaterial3D_cq5gf")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="."]
+transform = Transform3D(0.267035, 0, -0.198072, 0, 3, 0, 0.00534646, 0, 9.89291, -4.94147, 1.56305, 0.0300307)
+use_collision = true
+material = SubResource("StandardMaterial3D_3irxl")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_dckfn")
+
+[node name="kitchenFridge" parent="." instance=ExtResource("2_qi052")]
+transform = Transform3D(0.180971, 0, 0, 0, 0.159961, 0, 0, 0, 0.337475, -0.350298, 0.125928, 3.96811)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="kitchenFridge"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.7262e-07, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchenFridge/StaticBody3D"]
+transform = Transform3D(4.04556, 0, 0, 0, 12.4934, 0, 0, 0, 2.79604, -2.18218, 2.8219, 1.5585)
+shape = SubResource("BoxShape3D_tas22")
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("3_tas22")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.959587, 0.640077, 1.27923)
+
+[node name="doorway" parent="." instance=ExtResource("4_7l045")]
+transform = Transform3D(-0.00159819, 0, -0.114051, 0, 0.16763, 0, -0.192366, 0, 0.000947541, 4.74043, 0.112151, 1.11051)
+
+[node name="loungeDesignSofaCorner" parent="." instance=ExtResource("5_cq5gf")]
+transform = Transform3D(0.00373724, 0, -0.266107, 0, 0.21436, 0, 0.156955, 0, 0.00633623, -1.1864, 0.1, -2.59726)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="loungeDesignSofaCorner"]
+transform = Transform3D(1, 0, 3.72529e-09, 0, 1, 0, 0, 0, 1, 0, 2.314, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="loungeDesignSofaCorner/StaticBody3D"]
+transform = Transform3D(1, 0, 1.86265e-08, 0, 1.00002, 0, 0, 0, 1, -11.2633, -0.395268, 5.19437)
+shape = SubResource("BoxShape3D_3irxl")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="loungeDesignSofaCorner/StaticBody3D"]
+transform = Transform3D(-0.0164577, 0, 0.999865, 0, 1.00002, 0, -0.999864, 0, -0.0164577, -5.34812, -0.395268, 11.7103)
+shape = SubResource("BoxShape3D_3irxl")
+
+[node name="pottedPlant" parent="." instance=ExtResource("6_3irxl")]
+transform = Transform3D(0.221399, 0, 0, 0, 0.134401, 0, 0, 0, 0.176012, -4.20017, 0.1, -2.07425)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="pottedPlant"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="pottedPlant/StaticBody3D"]
+transform = Transform3D(0.425815, 0, 0, 0, 1.8136, 0, 0, 0, 0.55783, 0, 2.55034, 0.0081377)
+shape = SubResource("SphereShape3D_2mwew")
