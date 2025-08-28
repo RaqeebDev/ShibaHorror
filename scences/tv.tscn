@@ -1,15 +1,76 @@
-[gd_scene load_steps=3 format=3 uid="uid://u53tpi6374sj"]
+[gd_scene load_steps=6 format=3 uid="uid://b27gjrd5rxkof"]
 
 [ext_resource type="PackedScene" uid="uid://bdtn1xjb5eyow" path="res://Assets/Models/MI SMART TV.fbx" id="1_4jumj"]
+[ext_resource type="VideoStream" uid="uid://hv3gutmg05g7" path="res://Assets/Models/Mr-beast-rizz-full-version.ogv" id="2_m8c1k"]
 
-[sub_resource type="VideoStreamTheora" id="VideoStreamTheora_m8c1k"]
+[sub_resource type="GDScript" id="GDScript_m8c1k"]
+script/source = "extends Node3D
+
+@onready var video_player = $VideoStreamPlayer
+@onready var tv_screen = $MeshInstance3D
+@onready var interact_label = $Area3D/Label3D
+
+var player_near = false
+
+func _ready():
+
+	var mat = StandardMaterial3D.new()
+	mat.albedo_texture = video_player.get_texture()
+	mat.emission_enabled = true
+	mat.emission_texture = video_player.get_texture()
+	mat.emission = Color(1,1,1) * 2.0
+	tv_screen.material_override = mat
+	
+	interact_label.visible = false
+
+
+func _on_area_3d_body_entered(body):
+	if body.is_in_group(\"player\"): 
+		player_near = true
+		interact_label.visible = true
+
+func _on_area_3d_body_exited(body):
+	if body.is_in_group(\"player\"):
+		player_near = false
+		interact_label.visible = false
+
+
+func _unhandled_input(event):
+	if player_near and event.is_action_pressed(\"interact\"):  
+		if video_player.is_playing():
+			video_player.stop()
+		else:
+			video_player.play()
+"
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vluli"]
+resource_local_to_scene = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hi5dx"]
 
 [node name="Node3D" type="Node3D"]
 
 [node name="MI SMART TV" parent="." instance=ExtResource("1_4jumj")]
 transform = Transform3D(0.491408, 0, 0, 0, 0.451418, 0, 0, 0, 1, -0.00341249, 0, 0.425919)
+script = SubResource("GDScript_m8c1k")
 
 [node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="MI SMART TV"]
-offset_right = 40.0
-offset_bottom = 40.0
-stream = SubResource("VideoStreamTheora_m8c1k")
+offset_top = -2.0
+offset_right = 1280.0
+offset_bottom = 718.0
+stream = ExtResource("2_m8c1k")
+volume_db = -6.67
+autoplay = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MI SMART TV"]
+transform = Transform3D(1.01648, 0, 0, 0, -1.83487, -0.601353, 0, 54.0479, -0.00416018, 0.0167672, 0.740903, -0.295473)
+mesh = SubResource("PlaneMesh_vluli")
+skeleton = NodePath("../..")
+
+[node name="Area3D" type="Area3D" parent="MI SMART TV"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MI SMART TV/Area3D"]
+transform = Transform3D(2.12891, 0, 0, 0, 1.35307, 0, 0, 0, 1.04136, 0, 0.735036, -0.354029)
+shape = SubResource("BoxShape3D_hi5dx")
+
+[connection signal="body_entered" from="MI SMART TV/Area3D" to="MI SMART TV" method="_on_area_3d_body_entered"]

@@ -1,10 +1,11 @@
-[gd_scene load_steps=25 format=3 uid="uid://c0eqjxwwmlp43"]
+[gd_scene load_steps=26 format=3 uid="uid://c0eqjxwwmlp43"]
 
 [ext_resource type="Texture2D" uid="uid://dpe1lpsg4jk6c" path="res://Assets/textures/Wood_07-256x256.png" id="1_dckfn"]
 [ext_resource type="PackedScene" uid="uid://c0qlydxfjy6mh" path="res://Assets/Models/kitchenFridge.fbx" id="2_qi052"]
 [ext_resource type="PackedScene" uid="uid://cjojcfqo0nkml" path="res://scences/player.tscn" id="3_tas22"]
 [ext_resource type="PackedScene" uid="uid://cbjetltm4rrbn" path="res://Assets/Models/doorway.fbx" id="4_7l045"]
 [ext_resource type="PackedScene" uid="uid://cd20wfkh4o0va" path="res://Assets/Models/loungeDesignSofaCorner.fbx" id="5_cq5gf"]
+[ext_resource type="PackedScene" uid="uid://d15ve5brw71qo" path="res://scences/light_bulb.tscn" id="5_qsoni"]
 [ext_resource type="PackedScene" uid="uid://b6w1naoc7g5al" path="res://Assets/Models/pottedPlant.fbx" id="6_3irxl"]
 [ext_resource type="PackedScene" uid="uid://bdtn1xjb5eyow" path="res://Assets/Models/MI SMART TV.fbx" id="7_2mwew"]
 [ext_resource type="PackedScene" uid="uid://kmkfmtsl0bit" path="res://Assets/Models/cabinetTelevision.fbx" id="8_2mn0i"]
@@ -47,7 +48,7 @@ size = Vector3(4.16467, 2.8208, 10.7764)
 radius = 2.04561
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2mn0i"]
-size = Vector3(2.01947, 1.10503, 0.162109)
+size = Vector3(2.01947, 1.10503, 0.224121)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_l7o77"]
 size = Vector3(7.71446, 2.18317, 0.879213)
@@ -135,12 +136,12 @@ transform = Transform3D(0.425815, 0, 0, 0, 1.8136, 0, 0, 0, 0.55783, 0, 2.55034,
 shape = SubResource("SphereShape3D_2mwew")
 
 [node name="MI SMART TV" parent="." instance=ExtResource("7_2mwew")]
-transform = Transform3D(-0.707831, 0, 0.00848568, 0, 0.653063, 0, -0.00607824, 0, -0.988185, -2.26916, 0.708532, -2.44581)
+transform = Transform3D(-0.707831, 0, 0.00848568, 0, 0.653063, 0, -0.00607824, 0, -0.988185, -2.26916, 0.835694, -2.44581)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MI SMART TV"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MI SMART TV/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0037291, 0.701169, -0.340174)
+transform = Transform3D(1, 0, 9.31323e-10, 0, 1, 0, -2.00234e-08, 0, 0.999995, 0.00372791, 0.701169, -0.309167)
 shape = SubResource("BoxShape3D_2mn0i")
 
 [node name="cabinetTelevision" parent="." instance=ExtResource("8_2mn0i")]
@@ -181,8 +182,24 @@ shape = SubResource("BoxShape3D_olo2r")
 
 [node name="CanvasLayer" parent="." instance=ExtResource("11_nskur")]
 
-[node name="Label" type="Label" parent="."]
+[node name="pressE" type="Label" parent="CanvasLayer"]
+visible = false
+offset_left = 876.0
+offset_top = 558.0
+offset_right = 1621.0
+offset_bottom = 881.0
+text = "[E] to Toggle Light"
+
+[node name="wakeup crosshair" type="Label" parent="."]
 offset_left = 570.0
 offset_top = 299.0
 offset_right = 610.0
 offset_bottom = 322.0
+
+[node name="light_bulb" parent="." instance=ExtResource("5_qsoni")]
+transform = Transform3D(0.190111, 0, 0, 0, 0.91372, 0, 0, 0, 0.281498, 1.72979, 0.817342, -4.18152)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.36382, 1.68934, -0.402833)
+light_color = Color(1, 1, 0, 1)
+light_energy = 2.973

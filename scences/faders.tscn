@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://e7op0kvloudv"]
 
 [ext_resource type="Script" uid="uid://ds4e4ln4wd65s" path="res://scripts/fade_rect.gd" id="1_yav7b"]
-[ext_resource type="FontFile" uid="uid://bvwc2cxqkv6x0" path="res://Assets/ChelseaMarket-Regular.ttf" id="2_4qx3a"]
+[ext_resource type="FontFile" uid="uid://bvwc2cxqkv6x0" path="res://Assets/textures/ChelseaMarket-Regular.ttf" id="2_4qx3a"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6g4yc"]
 font = ExtResource("2_4qx3a")

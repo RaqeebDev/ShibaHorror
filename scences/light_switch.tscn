@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://pm2jxdgpe17"]
+
+[ext_resource type="Script" uid="uid://6dvyjxluxpf2" path="res://scripts/light_switch.gd" id="1_b8aig"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b8aig"]
+albedo_color = Color(0.655601, 0.655601, 0.655601, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lrvxx"]
+material = SubResource("StandardMaterial3D_b8aig")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vbhru"]
+size = Vector3(1.02155, 1.1933, 0.651245)
+
+[node name="light_switch" type="Node3D"]
+script = ExtResource("1_b8aig")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.04181, 0, 0, 0, 1.18196, 0, 0, 0, 0.247014, 0, 0, 0)
+mesh = SubResource("BoxMesh_lrvxx")
+
+[node name="off" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.425242, 0, 0, 0, 0.822417, -0.128785, 0, 0.502478, 0.210785, 0, 0, 0.156342)
+mesh = SubResource("BoxMesh_lrvxx")
+
+[node name="on" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.425242, 0, 0, 0, 0.855766, 0.113618, 0, -0.443303, 0.219332, 0, -0.0433555, 0.156342)
+mesh = SubResource("BoxMesh_lrvxx")
+
+[node name="light_switch" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="light_switch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0107727, -0.00888062, 0.174377)
+shape = SubResource("BoxShape3D_vbhru")

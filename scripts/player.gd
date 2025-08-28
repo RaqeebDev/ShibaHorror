@@ -1,18 +1,18 @@
 extends CharacterBody3D
 
-
 const SPEED = 4.0
 const JUMP_VELOCITY = 3.5
 @onready var Head = $head
-var Sensitivity : float = 0.005
+var Sensitivity : float = 0.002
 var is_awake := false
 
+@onready var ray = $head/Camera3D/RayCast3D
 
-   
-
- 
-func _ready() ->void:
+func _ready() -> void:
+	print(ray)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED 
+	if ray == null:
+		print("RayCast3D not found! Check node path.") # sanity check
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -23,7 +23,14 @@ func _unhandled_input(event: InputEvent) -> void:
 		Head.rotate_x(-event.relative.y * Sensitivity)
 		Head.rotation.x = clamp(Head.rotation.x, -PI/2, PI/2)
 
-
+func _input(event):
+	if event.is_action_pressed("interact"):
+		print("pressed")
+		if ray.is_colliding():
+			var collider = ray.get_collider()
+			print("colliding")
+			if collider != null and collider.is_in_group("switch"):
+				collider.toggle_light()
 
 func _fade_out():
 	var tween := create_tween()
@@ -35,24 +42,20 @@ func _fade_out():
 		queue_free()
 	)
 
-
 func _physics_process(delta: float) -> void:
-	
-	# Add the gravity.
+	# Stop movement if not awake
 	if not is_awake:
 		return  
+
+	# Gravity
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-		
 
-	# Handle jump.
+	# Jump
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-	
-		
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
+	# Movement input
 	var input_dir := Input.get_vector("left", "right", "forward", "backward")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:

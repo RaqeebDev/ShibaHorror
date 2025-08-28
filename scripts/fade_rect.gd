@@ -7,16 +7,16 @@ extends ColorRect
 var asleep := true
 
 func _ready():
-	color = Color(0, 0, 0, 1)	# start fully black
+	color = Color(0, 0, 0, 1)	
 	wake_label.visible = true
-	crosshair.visible = false   # hide dot until awake
+	crosshair.visible = false  
 	if player:
 		player.is_awake = false
 
 func _process(delta):
-	if asleep and Input.is_action_just_pressed("interact"):  # E key
+	if asleep and Input.is_action_just_pressed("interact"): 
 		asleep = false
-		wake_label.visible = false   # hide wake up text
+		wake_label.visible = false  
 		_fade_out()
 
 func _fade_out():
@@ -24,7 +24,7 @@ func _fade_out():
 	tween.tween_property(self, "color:a", 0.0, 2.0)
 	tween.tween_callback(func():
 		if player:
-			player.is_awake = true   # unlock movement
-		crosshair.visible = true     # show dot now
+			player.is_awake = true  
+		crosshair.visible = true     
 		queue_free()
 	)
