@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c0eqjxwwmlp43"]
+[gd_scene load_steps=25 format=3 uid="uid://c0eqjxwwmlp43"]
 
 [ext_resource type="Texture2D" uid="uid://dpe1lpsg4jk6c" path="res://Assets/textures/Wood_07-256x256.png" id="1_dckfn"]
 [ext_resource type="PackedScene" uid="uid://c0qlydxfjy6mh" path="res://Assets/Models/kitchenFridge.fbx" id="2_qi052"]
@@ -8,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://b6w1naoc7g5al" path="res://Assets/Models/pottedPlant.fbx" id="6_3irxl"]
 [ext_resource type="PackedScene" uid="uid://bdtn1xjb5eyow" path="res://Assets/Models/MI SMART TV.fbx" id="7_2mwew"]
 [ext_resource type="PackedScene" uid="uid://kmkfmtsl0bit" path="res://Assets/Models/cabinetTelevision.fbx" id="8_2mn0i"]
+[ext_resource type="PackedScene" uid="uid://b3ri8bcvgih8n" path="res://Assets/Models/kitchenBar.fbx" id="9_gmcrc"]
+[ext_resource type="PackedScene" uid="uid://b6ahfo25xcycv" path="res://Assets/Models/kitchenCabinet.fbx" id="10_nskur"]
+[ext_resource type="PackedScene" uid="uid://e7op0kvloudv" path="res://scences/faders.tscn" id="11_nskur"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qi052"]
 albedo_texture = ExtResource("1_dckfn")
@@ -47,7 +50,13 @@ radius = 2.04561
 size = Vector3(2.01947, 1.10503, 0.162109)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_l7o77"]
-size = Vector3(10.2065, 1, 2.16261)
+size = Vector3(7.71446, 2.18317, 0.879213)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gmcrc"]
+size = Vector3(4.46722, 3.61475, 2.12903)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_olo2r"]
+size = Vector3(1.82306, 1.00046, 4.27184)
 
 [node name="room" type="Node3D"]
 
@@ -140,5 +149,40 @@ transform = Transform3D(0.211298, 0, 0, 0, 0.198727, 0, 0, 0, 0.154002, -1.52881
 [node name="StaticBody3D" type="StaticBody3D" parent="cabinetTelevision"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="cabinetTelevision/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1.7088, 0, 0, 0, 1.27304, -1.95785, 5.01359, 7.15709)
+transform = Transform3D(1.04471, 0, 0, 0, 1.77024, -0.370539, 0, 0.230668, 2.84366, -4.09386, 1.36031, 0.939924)
 shape = SubResource("BoxShape3D_l7o77")
+
+[node name="kitchenBar" parent="." instance=ExtResource("9_gmcrc")]
+transform = Transform3D(0.0035935, 0, 0.280538, 0, 0.233318, 0, -0.319694, 0, 0.00315337, 1.2999, 0.119424, -4.78924)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="kitchenBar"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchenBar/StaticBody3D"]
+transform = Transform3D(1, 0, 1.86265e-09, 0, 1, 0, -1.86265e-09, 0, 1, -2.41375, 2.10462, 1.07038)
+shape = SubResource("BoxShape3D_gmcrc")
+
+[node name="kitchenCabinet" parent="." instance=ExtResource("10_nskur")]
+transform = Transform3D(0.715675, 0, 0, 0, 0.224039, 0, 0, 0, 0.150972, -1.71064, 0.158983, 4.0148)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="kitchenCabinet"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchenCabinet/StaticBody3D"]
+transform = Transform3D(1.85586, 0, -1.33671e-13, 0, 8.38348, 0, 1.65429e-13, 0, 1, -1.69684, 0.00190234, 2.2074)
+shape = SubResource("BoxShape3D_olo2r")
+
+[node name="kitchenCabinet2" parent="." instance=ExtResource("10_nskur")]
+transform = Transform3D(9.66922e-09, 0, -0.222672, 0, 0.224039, 0, 0.810844, 0, 2.65533e-09, -3.81118, 0.158983, 4.41753)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="kitchenCabinet2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="kitchenCabinet2/StaticBody3D"]
+transform = Transform3D(2.86964, 0, -1.33671e-13, 0, 8.31137, 0, 2.55795e-13, 0, 1, -1.69684, 0.00190222, 2.2074)
+shape = SubResource("BoxShape3D_olo2r")
+
+[node name="CanvasLayer" parent="." instance=ExtResource("11_nskur")]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 570.0
+offset_top = 299.0
+offset_right = 610.0
+offset_bottom = 322.0

@@ -1,10 +1,15 @@
 extends CharacterBody3D
 
 
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
+const SPEED = 4.0
+const JUMP_VELOCITY = 3.5
 @onready var Head = $head
 var Sensitivity : float = 0.005
+var is_awake := false
+
+
+   
+
  
 func _ready() ->void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED 
@@ -18,10 +23,27 @@ func _unhandled_input(event: InputEvent) -> void:
 		Head.rotate_x(-event.relative.y * Sensitivity)
 		Head.rotation.x = clamp(Head.rotation.x, -PI/2, PI/2)
 
+
+
+func _fade_out():
+	var tween := create_tween()
+	tween.tween_property(self, "color:a", 0.0, 2.0)
+	tween.tween_callback(func():
+		var player = get_tree().get_first_node_in_group("player")
+		if player:
+			player.is_awake = true
+		queue_free()
+	)
+
+
 func _physics_process(delta: float) -> void:
+	
 	# Add the gravity.
+	if not is_awake:
+		return  
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+		
 
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():

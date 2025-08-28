@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://u53tpi6374sj"]
+
+[ext_resource type="PackedScene" uid="uid://bdtn1xjb5eyow" path="res://Assets/Models/MI SMART TV.fbx" id="1_4jumj"]
+
+[sub_resource type="VideoStreamTheora" id="VideoStreamTheora_m8c1k"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MI SMART TV" parent="." instance=ExtResource("1_4jumj")]
+transform = Transform3D(0.491408, 0, 0, 0, 0.451418, 0, 0, 0, 1, -0.00341249, 0, 0.425919)
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="MI SMART TV"]
+offset_right = 40.0
+offset_bottom = 40.0
+stream = SubResource("VideoStreamTheora_m8c1k")
