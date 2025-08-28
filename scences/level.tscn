@@ -1,17 +1,17 @@
-[gd_scene load_steps=26 format=3 uid="uid://c0eqjxwwmlp43"]
+[gd_scene load_steps=25 format=3 uid="uid://c0eqjxwwmlp43"]
 
 [ext_resource type="Texture2D" uid="uid://dpe1lpsg4jk6c" path="res://Assets/textures/Wood_07-256x256.png" id="1_dckfn"]
 [ext_resource type="PackedScene" uid="uid://c0qlydxfjy6mh" path="res://Assets/Models/kitchenFridge.fbx" id="2_qi052"]
 [ext_resource type="PackedScene" uid="uid://cjojcfqo0nkml" path="res://scences/player.tscn" id="3_tas22"]
 [ext_resource type="PackedScene" uid="uid://cbjetltm4rrbn" path="res://Assets/Models/doorway.fbx" id="4_7l045"]
 [ext_resource type="PackedScene" uid="uid://cd20wfkh4o0va" path="res://Assets/Models/loungeDesignSofaCorner.fbx" id="5_cq5gf"]
-[ext_resource type="PackedScene" uid="uid://d15ve5brw71qo" path="res://scences/light_bulb.tscn" id="5_qsoni"]
 [ext_resource type="PackedScene" uid="uid://b6w1naoc7g5al" path="res://Assets/Models/pottedPlant.fbx" id="6_3irxl"]
-[ext_resource type="PackedScene" uid="uid://bdtn1xjb5eyow" path="res://Assets/Models/MI SMART TV.fbx" id="7_2mwew"]
 [ext_resource type="PackedScene" uid="uid://kmkfmtsl0bit" path="res://Assets/Models/cabinetTelevision.fbx" id="8_2mn0i"]
+[ext_resource type="PackedScene" uid="uid://cr243x0ei4463" path="res://scences/tv.tscn" id="8_olo2r"]
 [ext_resource type="PackedScene" uid="uid://b3ri8bcvgih8n" path="res://Assets/Models/kitchenBar.fbx" id="9_gmcrc"]
 [ext_resource type="PackedScene" uid="uid://b6ahfo25xcycv" path="res://Assets/Models/kitchenCabinet.fbx" id="10_nskur"]
 [ext_resource type="PackedScene" uid="uid://e7op0kvloudv" path="res://scences/faders.tscn" id="11_nskur"]
+[ext_resource type="PackedScene" uid="uid://lud52mnbbu75" path="res://scences/LightSwitch.tscn" id="11_olo2r"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qi052"]
 albedo_texture = ExtResource("1_dckfn")
@@ -45,13 +45,10 @@ size = Vector3(0.86731, 1, 1)
 size = Vector3(4.16467, 2.8208, 10.7764)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2mwew"]
-radius = 2.04561
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_2mn0i"]
-size = Vector3(2.01947, 1.10503, 0.224121)
+radius = 1.01199
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_l7o77"]
-size = Vector3(7.71446, 2.18317, 0.879213)
+size = Vector3(5.93454, 1.80251, 0.879213)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gmcrc"]
 size = Vector3(4.46722, 3.61475, 2.12903)
@@ -122,10 +119,6 @@ transform = Transform3D(1, 0, 3.72529e-09, 0, 1, 0, 0, 0, 1, 0, 2.314, 0)
 transform = Transform3D(1, 0, 1.86265e-08, 0, 1.00002, 0, 0, 0, 1, -11.2633, -0.395268, 5.19437)
 shape = SubResource("BoxShape3D_3irxl")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="loungeDesignSofaCorner/StaticBody3D"]
-transform = Transform3D(-0.0164577, 0, 0.999865, 0, 1.00002, 0, -0.999864, 0, -0.0164577, -5.34812, -0.395268, 11.7103)
-shape = SubResource("BoxShape3D_3irxl")
-
 [node name="pottedPlant" parent="." instance=ExtResource("6_3irxl")]
 transform = Transform3D(0.221399, 0, 0, 0, 0.134401, 0, 0, 0, 0.176012, -4.20017, 0.1, -2.07425)
 
@@ -135,22 +128,13 @@ transform = Transform3D(0.221399, 0, 0, 0, 0.134401, 0, 0, 0, 0.176012, -4.20017
 transform = Transform3D(0.425815, 0, 0, 0, 1.8136, 0, 0, 0, 0.55783, 0, 2.55034, 0.0081377)
 shape = SubResource("SphereShape3D_2mwew")
 
-[node name="MI SMART TV" parent="." instance=ExtResource("7_2mwew")]
-transform = Transform3D(-0.707831, 0, 0.00848568, 0, 0.653063, 0, -0.00607824, 0, -0.988185, -2.26916, 0.835694, -2.44581)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="MI SMART TV"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MI SMART TV/StaticBody3D"]
-transform = Transform3D(1, 0, 9.31323e-10, 0, 1, 0, -2.00234e-08, 0, 0.999995, 0.00372791, 0.701169, -0.309167)
-shape = SubResource("BoxShape3D_2mn0i")
-
 [node name="cabinetTelevision" parent="." instance=ExtResource("8_2mn0i")]
 transform = Transform3D(0.211298, 0, 0, 0, 0.198727, 0, 0, 0, 0.154002, -1.52881, 0.1, -2.34194)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="cabinetTelevision"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="cabinetTelevision/StaticBody3D"]
-transform = Transform3D(1.04471, 0, 0, 0, 1.77024, -0.370539, 0, 0.230668, 2.84366, -4.09386, 1.36031, 0.939924)
+transform = Transform3D(1.04471, 0, 0, 0, 1.77024, -0.370539, 0, 0.230668, 2.84366, -3.82692, 1.6004, 0.97121)
 shape = SubResource("BoxShape3D_l7o77")
 
 [node name="kitchenBar" parent="." instance=ExtResource("9_gmcrc")]
@@ -196,10 +180,23 @@ offset_top = 299.0
 offset_right = 610.0
 offset_bottom = 322.0
 
-[node name="light_bulb" parent="." instance=ExtResource("5_qsoni")]
-transform = Transform3D(0.190111, 0, 0, 0, 0.91372, 0, 0, 0, 0.281498, 1.72979, 0.817342, -4.18152)
-
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.36382, 1.68934, -0.402833)
-light_color = Color(1, 1, 0, 1)
-light_energy = 2.973
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46587, 1.334, -1.1366)
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.31969, 1.334, -2.35317)
+light_color = Color(0.688303, 0.000356071, 0.688298, 1)
+light_energy = 1.311
+light_size = 1.0
+distance_fade_enabled = true
+
+[node name="LightSwitch" parent="." node_paths=PackedStringArray("target_light") instance=ExtResource("11_olo2r")]
+transform = Transform3D(0.00931458, 0, -0.328344, 0, 0.0681896, 0, 0.0481481, 0, 0.0635203, 1.83555, 1.10148, 0.582282)
+target_light = NodePath("../OmniLight3D")
+
+[node name="LightSwitch2" parent="." node_paths=PackedStringArray("target_light") instance=ExtResource("11_olo2r")]
+transform = Transform3D(0.0490038, 0, 0.0129956, 0, 0.0214431, 0, -0.00190566, 0, 0.334179, -2.15479, 0.453286, -2.27219)
+target_light = NodePath("../OmniLight3D2")
+
+[node name="TV" parent="." instance=ExtResource("8_olo2r")]
+transform = Transform3D(0.00470766, 0, 0.741625, 0, 0.683887, 0, -0.998983, 0, 0.00349487, -2.33558, 0.695065, -2.09591)

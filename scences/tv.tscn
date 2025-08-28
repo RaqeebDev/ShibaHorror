@@ -1,76 +1,54 @@
-[gd_scene load_steps=6 format=3 uid="uid://b27gjrd5rxkof"]
+[gd_scene load_steps=7 format=3 uid="uid://cr243x0ei4463"]
 
 [ext_resource type="PackedScene" uid="uid://bdtn1xjb5eyow" path="res://Assets/Models/MI SMART TV.fbx" id="1_4jumj"]
-[ext_resource type="VideoStream" uid="uid://hv3gutmg05g7" path="res://Assets/Models/Mr-beast-rizz-full-version.ogv" id="2_m8c1k"]
+[ext_resource type="Script" uid="uid://cf68t75hopml8" path="res://scripts/tv.gd" id="1_m8c1k"]
+[ext_resource type="VideoStream" uid="uid://csyr8ny553yiv" path="res://Assets/Models/Old-analog-TV-noise_-bad-signal-Retroqrad-Retroqrad-Azerbaycan-_720p_-h264_.ogv" id="3_hi5dx"]
 
-[sub_resource type="GDScript" id="GDScript_m8c1k"]
-script/source = "extends Node3D
-
-@onready var video_player = $VideoStreamPlayer
-@onready var tv_screen = $MeshInstance3D
-@onready var interact_label = $Area3D/Label3D
-
-var player_near = false
-
-func _ready():
-
-	var mat = StandardMaterial3D.new()
-	mat.albedo_texture = video_player.get_texture()
-	mat.emission_enabled = true
-	mat.emission_texture = video_player.get_texture()
-	mat.emission = Color(1,1,1) * 2.0
-	tv_screen.material_override = mat
-	
-	interact_label.visible = false
-
-
-func _on_area_3d_body_entered(body):
-	if body.is_in_group(\"player\"): 
-		player_near = true
-		interact_label.visible = true
-
-func _on_area_3d_body_exited(body):
-	if body.is_in_group(\"player\"):
-		player_near = false
-		interact_label.visible = false
-
-
-func _unhandled_input(event):
-	if player_near and event.is_action_pressed(\"interact\"):  
-		if video_player.is_playing():
-			video_player.stop()
-		else:
-			video_player.play()
-"
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_vluli"]
-resource_local_to_scene = true
+[sub_resource type="BoxShape3D" id="BoxShape3D_m8c1k"]
+size = Vector3(1.83236, 0.912964, 0.271484)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hi5dx"]
+size = Vector3(3, 2.35205, 3)
 
-[node name="Node3D" type="Node3D"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_hi5dx"]
+
+[node name="TV" type="Node3D"]
+script = ExtResource("1_m8c1k")
 
 [node name="MI SMART TV" parent="." instance=ExtResource("1_4jumj")]
-transform = Transform3D(0.491408, 0, 0, 0, 0.451418, 0, 0, 0, 1, -0.00341249, 0, 0.425919)
-script = SubResource("GDScript_m8c1k")
+transform = Transform3D(0.0173128, 0, 0.99985, 0, 1, 0, -0.99985, 0, 0.0173128, 0.432682, 0, -0.0259172)
 
-[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="MI SMART TV"]
-offset_top = -2.0
-offset_right = 1280.0
-offset_bottom = 718.0
-stream = ExtResource("2_m8c1k")
-volume_db = -6.67
-autoplay = true
+[node name="StaticBody3D" type="StaticBody3D" parent="MI SMART TV"]
+transform = Transform3D(0.0173128, 0, -0.99985, 0, 1, 0, 0.99985, 0, 0.0173128, -0.0334042, 0, -0.432168)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="MI SMART TV"]
-transform = Transform3D(1.01648, 0, 0, 0, -1.83487, -0.601353, 0, 54.0479, -0.00416018, 0.0167672, 0.740903, -0.295473)
-mesh = SubResource("PlaneMesh_vluli")
-skeleton = NodePath("../..")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MI SMART TV/StaticBody3D"]
+transform = Transform3D(0.0173128, 0, 0.99985, 0, 1, 0, -0.99985, 0, 0.0173128, 0.0685508, 0.806887, -0.0364)
+shape = SubResource("BoxShape3D_m8c1k")
 
-[node name="Area3D" type="Area3D" parent="MI SMART TV"]
+[node name="DetectionArea" type="Area3D" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MI SMART TV/Area3D"]
-transform = Transform3D(2.12891, 0, 0, 0, 1.35307, 0, 0, 0, 1.04136, 0, 0.735036, -0.354029)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.176025, 0)
 shape = SubResource("BoxShape3D_hi5dx")
 
-[connection signal="body_entered" from="MI SMART TV/Area3D" to="MI SMART TV" method="_on_area_3d_body_entered"]
+[node name="InteractionLabel" type="Label3D" parent="."]
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="SubViewport"]
+offset_right = 1920.0
+offset_bottom = 1080.0
+stream = ExtResource("3_hi5dx")
+paused = true
+loop = true
+
+[node name="TVScreen" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.00194275, 0.993132, -0.0182237, -0.56665, -0.00340074, 0.000286704, 0.000129138, 0.018396, 0.983884, 0.141827, 0.745031, -0.0258917)
+visible = false
+mesh = SubResource("PlaneMesh_hi5dx")
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
