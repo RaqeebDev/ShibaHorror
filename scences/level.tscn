@@ -65,8 +65,9 @@ size = Vector3(0.710022, 1, 1)
 material = SubResource("StandardMaterial3D_qi052")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
-transform = Transform3D(10, 0, 0, 0, 0.2, 0, 0, 0, 10, 0, 25.8833, 0)
+transform = Transform3D(10, 0, 0, 0, 0.2, 0, 0, 0, 10, -1.27441, 3.09605, 0)
 use_collision = true
+size = Vector3(0.745117, 1, 1)
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="."]
 transform = Transform3D(-0.00261045, 0, -9.89441, 0, 3, 0, 0.267076, 0, -0.09671, -1.41073, 1.56539, -5.01379)
@@ -181,7 +182,7 @@ offset_right = 610.0
 offset_bottom = 322.0
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46587, 1.334, -1.1366)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46587, 1.18583, -1.1366)
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.31969, 1.334, -2.35317)
