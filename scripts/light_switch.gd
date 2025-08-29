@@ -1,42 +1,29 @@
-# LightSwitch.gd
 extends Node3D
 
-@onready var label_3d = $Label3D
-@export var target_light: Node3D
 
-var player_in_range = false
+@export var on = false
+@export var on_mat : StandardMaterial3D
+@export var off_mat : StandardMaterial3D
+@export var light_bulb : Node3D
 
 func _ready():
-	# Verify nodes exist
-	if not label_3d:
-		push_error("Label3D node not found! Check scene structure.")
-		return
+	if !on:
+		light_bulb.get_node("light").material_override = off_mat
+	if on:
+		light_bulb.get_node("light").material_override = on_mat	
+		
+	light_bulb.get_node("OmniLight3D").visible = on	
 	
-	label_3d.visible = false
-	print("LightSwitch ready. Target light: ", target_light)
-
-func _process(_delta):
-	if player_in_range:
-		label_3d.visible = true
-		if Input.is_action_just_pressed("interact"):
-			toggle_light()
-	else:
-		label_3d.visible = false
-
-func _on_detection_area_body_entered(body):
-	if body.is_in_group("player"):
-		player_in_range = true
-		print("Player entered switch area")
-
-func _on_detection_area_body_exited(body):
-	if body.is_in_group("player"):
-		player_in_range = false
-		print("Player left switch area")
-
+	
 func toggle_light():
-	if target_light and target_light is Light3D:
-		target_light.visible = !target_light.visible
-		target_light.light_energy = 1.0 if target_light.visible else 0.0
-		print("Light toggled. Now: ", "ON" if target_light.visible else "OFF")
-	else:
-		print("Error: No valid light assigned")
+	on = !on
+	if on:
+		$on.visible = true
+		$off.visible = false
+		light_bulb.get_node("light").material_override = on_mat	
+	if on:
+		$on.visible = false
+		$off.visible = true	
+		light_bulb.get_node("light").material_override = off_mat
+	light_bulb.get_node("OmniLight3D").visible = on	        	
+					
