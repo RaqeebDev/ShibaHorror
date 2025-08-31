@@ -1,0 +1,31 @@
+[gd_resource type="MeshLibrary" load_steps=5 format=3 uid="uid://b81b52xy6ysg8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_va6nl"]
+albedo_color = Color(0.196078, 0.12549, 0.12549, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_unw8l"]
+material = SubResource("StandardMaterial3D_va6nl")
+size = Vector3(2, 6, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gthid"]
+albedo_color = Color(0.431373, 0.431373, 0.431373, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ggtgp"]
+material = SubResource("StandardMaterial3D_gthid")
+size = Vector3(2, 2, 2)
+
+[resource]
+item/0/name = "Wall"
+item/0/mesh = SubResource("BoxMesh_unw8l")
+item/0/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/0/mesh_cast_shadow = 1
+item/0/shapes = []
+item/0/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/0/navigation_layers = 1
+item/1/name = "Floor"
+item/1/mesh = SubResource("BoxMesh_ggtgp")
+item/1/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/1/mesh_cast_shadow = 1
+item/1/shapes = []
+item/1/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/1/navigation_layers = 1
