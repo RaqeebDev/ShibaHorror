@@ -8,7 +8,7 @@ material = SubResource("StandardMaterial3D_1j64i")
 orientation = 0
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_as67n"]
-
+ss
 [sub_resource type="BoxShape3D" id="BoxShape3D_7o1l1"]
 size = Vector3(2, 2, 2)
 

@@ -11,7 +11,7 @@ material = SubResource("StandardMaterial3D_5bop3")
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5bop3"]
 radius = 0.4
 
-[node name="Monster" type="CharacterBody3D"]
+[node name="Monster" type=monster tscn"CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.92824, 0)
 collision_layer = 8
 collision_mask = 5

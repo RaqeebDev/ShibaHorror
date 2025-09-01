@@ -10,7 +10,7 @@ radius = 0.463536
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 transform = Transform3D(1.76448, 0, 0, 0, 1.76448, 0, 0, 0, 1.76448, 0, 0, 0)
-collision_layer = 4
+collision_layer = 4ddddddd
 collision_mask = 9
 script = ExtResource("1_gmfve")
 

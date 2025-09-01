@@ -8,10 +8,9 @@ albedo_color = Color(0.336608, 0.336608, 0.336608, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_vcglt"]
 material = SubResource("StandardMaterial3D_dnfwo")
-size = Vector3(2, 6, 2)
+size = Vector3(2, 6, 2)d
 
-[node name="StaticBody3D" type="StaticBody3D"]
-
+dd
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_1lwpx")
 
