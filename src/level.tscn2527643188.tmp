@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbw1jcwi7pxp7"]
+
+[ext_resource type="MeshLibrary" uid="uid://nm0wr84gvsyj" path="res://Assets/map.tres" id="1_4q7qo"]
+[ext_resource type="Script" uid="uid://bvuwscphwk1fx" path="res://src/scripts/level.gd" id="1_68xyb"]
+[ext_resource type="PackedScene" uid="uid://bkkp4fqtp34tv" path="res://src/monster.tscn" id="2_4q7qo"]
+[ext_resource type="PackedScene" uid="uid://bcmvmg2ak0x0u" path="res://src/player.tscn" id="2_68xyb"]
+
+[node name="level" type="Node3D"]
+script = ExtResource("1_68xyb")
+
+[node name="lights" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="lights"]
+transform = Transform3D(1, 0, 0, 0, 0.77565, 0.631163, 0, -0.631163, 0.77565, 4.01379, 6.25647, -5.73594)
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="lights"]
+transform = Transform3D(1, 0, 0, 0, 0.77565, 0.631163, 0, -0.631163, 0.77565, 8.64988, 6.25647, -5.73594)
+
+[node name="DirectionalLight3D4" type="DirectionalLight3D" parent="lights"]
+transform = Transform3D(1, 0, 0, 0, 0.77565, 0.631163, 0, -0.631163, 0.77565, 8.64988, 6.25647, -10.7958)
+
+[node name="DirectionalLight3D5" type="DirectionalLight3D" parent="lights"]
+transform = Transform3D(1, 0, 0, 0, 0.77565, 0.631163, 0, -0.631163, 0.77565, 15.8582, 6.25647, -10.7958)
+
+[node name="DirectionalLight3D3" type="DirectionalLight3D" parent="lights"]
+transform = Transform3D(1, 0, 0, 0, 0.77565, 0.631163, 0, -0.631163, 0.77565, 13.9416, 6.25647, -5.73594)
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("1_4q7qo")
+data = {
+"cells": PackedInt32Array(7, 65522, 786433, 6, 65522, 786433, 5, 65522, 786433, 5, 65523, 786433, 6, 65523, 786433, 7, 65523, 786433, 7, 65524, 786433, 6, 65524, 786433, 5, 65524, 786433, 4, 65522, 786433, 5, 65521, 786433, 5, 65520, 786433, 5, 65519, 786433, 4, 65521, 786433, 4, 65520, 786433, 4, 65519, 786433, 4, 65518, 786433, 7, 65521, 786433, 6, 65521, 786433, 6, 65520, 786433, 6, 65519, 786433, 6, 65518, 786433, 7, 65519, 786433, 7, 65520, 786433, 7, 65518, 786433, 5, 65518, 786433, 4, 65523, 786433, 4, 65524, 786433, 8, 65518, 786432, 8, 65519, 786432, 8, 65520, 786432, 8, 65521, 786432, 8, 65522, 786432, 8, 65517, 786432, 7, 65517, 786432, 6, 65517, 786432, 5, 65517, 786432, 4, 65517, 786432, 8, 65524, 786432, 9, 65523, 786432, 8, 65523, 786432)
+}
+
+[node name="player" parent="GridMap" instance=ExtResource("2_68xyb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.30092, 10.0232, -8.9)
+
+[node name="Monster" parent="GridMap" groups=["enemy"] instance=ExtResource("2_4q7qo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.25263, 0)

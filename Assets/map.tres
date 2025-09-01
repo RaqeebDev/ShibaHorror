@@ -1,0 +1,54 @@
+[gd_resource type="MeshLibrary" load_steps=10 format=3 uid="uid://nm0wr84gvsyj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3wh3q"]
+albedo_color = Color(0.196078, 0.12549, 0.12549, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0dhrt"]
+material = SubResource("StandardMaterial3D_3wh3q")
+size = Vector3(2, 2, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1hjyg"]
+size = Vector3(2, 2, 6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1p2f4"]
+albedo_color = Color(0.431373, 0.431373, 0.431373, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vt8fp"]
+material = SubResource("StandardMaterial3D_1p2f4")
+size = Vector3(2, 2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_thh0d"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0dhrt"]
+albedo_color = Color(0.919281, 4.47616e-06, 1.15514e-06, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1hjyg"]
+material = SubResource("StandardMaterial3D_0dhrt")
+orientation = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3wh3q"]
+size = Vector3(2, 2, 2)
+
+[resource]
+item/0/name = "Wall"
+item/0/mesh = SubResource("BoxMesh_0dhrt")
+item/0/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/0/mesh_cast_shadow = 1
+item/0/shapes = [SubResource("BoxShape3D_1hjyg"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/0/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/0/navigation_layers = 1
+item/1/name = "Floor"
+item/1/mesh = SubResource("BoxMesh_vt8fp")
+item/1/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/1/mesh_cast_shadow = 1
+item/1/shapes = [SubResource("BoxShape3D_thh0d"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/1/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/1/navigation_layers = 1
+item/2/name = "NavigFloor"
+item/2/mesh = SubResource("PlaneMesh_1hjyg")
+item/2/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/2/mesh_cast_shadow = 1
+item/2/shapes = [SubResource("BoxShape3D_3wh3q"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/2/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/2/navigation_layers = 1
